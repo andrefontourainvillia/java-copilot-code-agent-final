@@ -27,6 +27,7 @@ src/main/java/com/mergingtonhigh/schoolmanagement/
 │   │   ├── ActivityRepository.java
 │   │   └── TeacherRepository.java
 │   └── valueobjects/         # Objetos de valor
+│       ├── ActivityType.java # Tipos de atividade com categorização automática
 │       ├── Email.java        # Validação de email
 │       └── ScheduleDetails.java # Detalhes de horário
 ├── application/              # 🔧 Camada de Aplicação
@@ -48,7 +49,9 @@ src/main/java/com/mergingtonhigh/schoolmanagement/
 │       └── TeacherRepositoryImpl.java
 └── presentation/             # 🎨 Camada de Apresentação
     ├── controllers/          # Controllers REST
-    │   └── ActivityController.java
+    │   ├── ActivityController.java
+    │   ├── AuthController.java
+    │   └── StaticController.java
     └── mappers/              # Mapeadores DTO ↔ Entity
         ├── ActivityMapper.java
         └── TeacherMapper.java
@@ -84,6 +87,27 @@ src/main/java/com/mergingtonhigh/schoolmanagement/
 - **Testcontainers** - Testes de integração
 - **Jacoco** - Cobertura de testes
 
+## ⚙️ Funcionalidades Avançadas
+
+### 🏷️ Categorização Automática de Atividades
+
+O sistema possui um mecanismo inteligente de categorização automática através do valor object `ActivityType`:
+
+- **5 categorias disponíveis**: Esportes, Artes, Acadêmico, Tecnologia, Comunidade
+- **Classificação automática** baseada em palavras-chave no nome e descrição
+- **Cores personalizadas** para cada categoria na interface
+- **Fallback inteligente** para categoria "Acadêmico" quando não identificada
+
+#### Categorias e Palavras-chave
+
+| Categoria | Palavras-chave | Cor |
+|-----------|---------------|-----|
+| **Esportes** | futebol, basquete, esporte, fitness, equipe, jogo | Verde |
+| **Artes** | arte, música, teatro, drama, manga, criativo, pintura | Roxo |
+| **Acadêmico** | ciência, matemática, estudo, olimpíada, aprendizado | Azul |
+| **Tecnologia** | computador, programação, robótica, digital, robô | Índigo |
+| **Comunidade** | voluntário, comunidade, serviço | Laranja |
+
 ## 📦 Funcionalidades Principais
 
 ### 🎓 Gestão de Atividades
@@ -91,18 +115,21 @@ src/main/java/com/mergingtonhigh/schoolmanagement/
 - **Listagem de atividades** com filtros por:
   - Dia da semana
   - Horário (manhã, tarde, fim de semana)
-  - Categoria (esportes, artes, acadêmico, etc.)
+  - Categoria (esportes, artes, acadêmico, tecnologia, comunidade)
+- **Categorização automática** de atividades baseada em nome e descrição
 - **Detalhes de atividades**:
   - Nome e descrição
   - Horários e dias da semana
-  - Capacidade máxima
+  - Capacidade máxima e vagas disponíveis
   - Lista de participantes
+  - Tipo/categoria com cores visuais
 
 ### 👨‍🏫 Sistema de Autenticação
 
 - **Login de professores** com username/senha
+- **API de autenticação** dedicada (`/auth/login`)
 - **Controle de acesso** baseado em roles (TEACHER/ADMIN)
-- **Autenticação requerida** para inscrições
+- **Autenticação requerida** para inscrições e administração
 
 ### 📝 Gestão de Inscrições
 
@@ -180,6 +207,24 @@ GET /activities?day=Monday&start_time=15:00&end_time=17:00
 GET /activities/days
 ```
 
+#### Autenticação
+
+```http
+POST /auth/login
+Content-Type: application/x-www-form-urlencoded
+
+username=teacher1&password=senha123
+```
+
+#### Arquivos Estáticos
+
+```http
+GET /
+GET /index.html
+GET /styles.css
+GET /app.js
+```
+
 #### Inscrições
 
 ```http
@@ -223,6 +268,11 @@ mvn jacoco:report
 
 O sistema utiliza **Mongock** para realizar migrações automáticas do banco de dados, incluindo:
 
+### Migrações Disponíveis
+
+- **V001_InitialDatabaseSetup** - Configuração inicial com professores e atividades básicas
+- **V002_AddMangaManiacsActivity** - Adição da atividade Manga Maniacs (migração recente)
+
 ### Professores Padrão
 
 - **admin** - Administrador principal
@@ -234,6 +284,11 @@ O sistema utiliza **Mongock** para realizar migrações automáticas do banco de
 - **Art Club** - Terças e quintas, 15:30-17:00
 - **Chess Club** - Segundas e quartas, 15:30-17:00
 - **Drama Club** - Quartas e sextas, 16:00-18:00
+- **Manga Maniacs** - Terças-feiras, 19:00-20:30 (adicionado recentemente)
+- **Programming Class** - Terças e quartas, 15:30-17:00
+- **Robotics Workshop** - Sábados, 10:00-14:00
+- **Science Olympiad** - Sábados, 13:00-16:00
+- **Community Service** - Sábados, 09:00-12:00
 
 ## 🔒 Segurança
 
@@ -253,3 +308,6 @@ O sistema utiliza **Mongock** para realizar migrações automáticas do banco de
 ### Perfis de Ambiente
 
 - **dev** - Ambiente de desenvolvimento
+nto
+** - Ambiente de desenvolvimento
+nto
