@@ -1,0 +1,135 @@
+name: "🎯 Adicionar Nova Atividade"
+description: "Solicitar a criação de uma nova atividade extracurricular"
+title: "[Nova Atividade]: "
+labels: ["enhancement", "activity", "teacher-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Solicitação de Nova Atividade
+        
+        Use este formulário para solicitar a adição de uma nova atividade extracurricular ao sistema.
+        Forneça o máximo de detalhes possível para que o agente de codificação possa implementar sua solicitação sem necessidade de esclarecimentos adicionais.
+
+  - type: input
+    id: activity_name
+    attributes:
+      label: "Nome da Atividade"
+      description: "Nome completo da atividade (ex: Club de Xadrez Avançado)"
+      placeholder: "Digite o nome da atividade"
+    validations:
+      required: true
+
+  - type: textarea
+    id: activity_description
+    attributes:
+      label: "Descrição da Atividade"
+      description: "Descrição detalhada do que a atividade envolve"
+      placeholder: "Descreva os objetivos, conteúdo e benefícios da atividade"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: activity_type
+    attributes:
+      label: "Tipo de Atividade"
+      description: "Categoria da atividade"
+      options:
+        - "Esportes"
+        - "Artes"
+        - "Acadêmico"
+        - "Tecnologia"
+        - "Música"
+        - "Teatro"
+        - "Voluntariado"
+        - "Outro"
+    validations:
+      required: true
+
+  - type: input
+    id: max_participants
+    attributes:
+      label: "Capacidade Máxima"
+      description: "Número máximo de estudantes que podem participar"
+      placeholder: "Ex: 20"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: schedule_days
+    attributes:
+      label: "Dias da Semana"
+      description: "Selecione os dias em que a atividade acontecerá"
+      options:
+        - label: "Segunda-feira"
+        - label: "Terça-feira"
+        - label: "Quarta-feira"
+        - label: "Quinta-feira"
+        - label: "Sexta-feira"
+        - label: "Sábado"
+        - label: "Domingo"
+
+  - type: input
+    id: start_time
+    attributes:
+      label: "Horário de Início"
+      description: "Horário de início da atividade (formato 24h)"
+      placeholder: "Ex: 15:30"
+    validations:
+      required: true
+
+  - type: input
+    id: end_time
+    attributes:
+      label: "Horário de Término"
+      description: "Horário de término da atividade (formato 24h)"
+      placeholder: "Ex: 17:00"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: difficulty_level
+    attributes:
+      label: "Nível de Dificuldade"
+      description: "Nível de dificuldade da atividade (opcional)"
+      options:
+        - "Não especificado (todos os níveis)"
+        - "Iniciante"
+        - "Intermediário"
+        - "Avançado"
+
+  - type: input
+    id: responsible_teacher
+    attributes:
+      label: "Professor Responsável"
+      description: "Nome de usuário do professor responsável pela atividade"
+      placeholder: "Ex: professor.silva"
+    validations:
+      required: true
+
+  - type: textarea
+    id: special_requirements
+    attributes:
+      label: "Requisitos Especiais"
+      description: "Qualquer requisito especial, equipamentos necessários, ou informações adicionais"
+      placeholder: "Ex: Sala com computadores, equipamentos esportivos específicos, etc."
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Critérios de Aceitação
+        
+        - [ ] Nova atividade criada no sistema com todos os detalhes fornecidos
+        - [ ] Atividade aparece na listagem principal
+        - [ ] Filtros funcionam corretamente com a nova atividade
+        - [ ] Professor responsável pode gerenciar inscrições
+        - [ ] Validações de capacidade máxima funcionam
+        - [ ] Horários são exibidos corretamente no formato brasileiro
+        
+        ## Dicas Técnicas para Implementação
+        
+        - A atividade deve ser adicionada através da migração Mongock ou endpoint de administração
+        - Usar a entidade `Activity` no domínio com `ScheduleDetails` para horários
+        - Considerar o enum `ActivityType` para categorização
+        - Validar formato de horários (LocalTime)
+        - Adicionar o professor como usuário válido se necessário

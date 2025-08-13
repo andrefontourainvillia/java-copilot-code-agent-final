@@ -1,0 +1,176 @@
+name: "👥 Gestão de Estudantes"
+description: "Solicitar funcionalidades relacionadas ao gerenciamento de estudantes"
+title: "[Estudantes]: "
+labels: ["enhancement", "student-management", "teacher-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Solicitação de Funcionalidade para Gestão de Estudantes
+        
+        Use este formulário para solicitar funcionalidades relacionadas ao gerenciamento de estudantes,
+        inscrições, listas, relatórios e outras operações relacionadas aos participantes das atividades.
+
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: "Tipo de Solicitação"
+      description: "Que tipo de funcionalidade de gestão de estudantes você precisa?"
+      options:
+        - "Inscrição em massa de estudantes"
+        - "Exportar listas de participantes"
+        - "Relatórios de participação"
+        - "Buscar estudantes por critérios"
+        - "Transferir estudantes entre atividades"
+        - "Histórico de participação de estudantes"
+        - "Validação de emails de estudantes"
+        - "Limites e restrições de inscrição"
+        - "Notificações para estudantes"
+        - "Outra funcionalidade"
+    validations:
+      required: true
+
+  - type: textarea
+    id: detailed_description
+    attributes:
+      label: "Descrição Detalhada"
+      description: "Descreva exatamente o que você precisa em relação à gestão de estudantes"
+      placeholder: "Ex: Preciso poder exportar uma lista com todos os estudantes inscritos em atividades esportivas, incluindo nome, email e atividade, para enviar para os pais"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: affected_activities
+    attributes:
+      label: "Atividades Afetadas"
+      description: "Esta funcionalidade se aplica a que tipo de atividades?"
+      options:
+        - label: "Todas as atividades"
+        - label: "Apenas atividades que eu ensino"
+        - label: "Atividades de um tipo específico (esportes, artes, etc.)"
+        - label: "Atividades com muitos participantes"
+        - label: "Atividades com poucos participantes"
+
+  - type: input
+    id: specific_activities
+    attributes:
+      label: "Atividades Específicas"
+      description: "Se aplicável, liste atividades específicas que seriam afetadas"
+      placeholder: "Ex: Chess Club, Art Club, Programming Class"
+
+  - type: dropdown
+    id: data_needed
+    attributes:
+      label: "Dados Necessários"
+      description: "Que informações sobre os estudantes você precisa?"
+      options:
+        - "Apenas emails"
+        - "Emails e nomes das atividades"
+        - "Relatório completo de participação"
+        - "Estatísticas e números"
+        - "Histórico temporal"
+        - "Comparação entre atividades"
+        - "Dados personalizados"
+
+  - type: dropdown
+    id: output_format
+    attributes:
+      label: "Formato de Saída"
+      description: "Como você gostaria de receber/visualizar os dados?"
+      options:
+        - "Visualização na tela"
+        - "Lista para impressão"
+        - "Arquivo CSV para download"
+        - "Arquivo PDF para download"
+        - "Email automático"
+        - "Outro formato"
+
+  - type: checkboxes
+    id: filtering_options
+    attributes:
+      label: "Opções de Filtro Necessárias"
+      description: "Que filtros você gostaria de poder aplicar?"
+      options:
+        - label: "Por atividade específica"
+        - label: "Por tipo de atividade"
+        - label: "Por período de tempo"
+        - label: "Por professor responsável"
+        - label: "Por número de participantes"
+        - label: "Por nível de dificuldade"
+        - label: "Por dia da semana"
+        - label: "Por horário"
+
+  - type: textarea
+    id: current_workflow
+    attributes:
+      label: "Processo Atual"
+      description: "Como você faz isso atualmente? Qual é a dificuldade?"
+      placeholder: "Ex: Atualmente tenho que abrir cada atividade manualmente, copiar os emails um por um e montar a lista no Excel"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency_of_use
+    attributes:
+      label: "Frequência de Uso"
+      description: "Com que frequência você usaria esta funcionalidade?"
+      options:
+        - "Diariamente"
+        - "Semanalmente"
+        - "Mensalmente"
+        - "A cada semestre"
+        - "Conforme necessário"
+        - "Apenas em situações especiais"
+
+  - type: checkboxes
+    id: permissions_needed
+    attributes:
+      label: "Permissões Necessárias"
+      description: "Que nível de acesso esta funcionalidade deveria ter?"
+      options:
+        - label: "Apenas professores podem usar"
+        - label: "Apenas administradores podem usar"
+        - label: "Professores veem apenas suas atividades"
+        - label: "Administradores veem todas as atividades"
+        - label: "Dados sensíveis devem ser protegidos"
+
+  - type: textarea
+    id: privacy_considerations
+    attributes:
+      label: "Considerações de Privacidade"
+      description: "Há alguma preocupação de privacidade ou segurança a considerar?"
+      placeholder: "Ex: Emails de estudantes não devem ser visíveis para todos os professores, apenas para os responsáveis pela atividade"
+
+  - type: textarea
+    id: business_justification
+    attributes:
+      label: "Justificativa"
+      description: "Por que esta funcionalidade é importante? Como ajudaria no trabalho educacional?"
+      placeholder: "Ex: Facilitaria a comunicação com os pais, melhoraria o controle de presença, permitiria análises pedagógicas"
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Critérios de Aceitação
+        
+        - [ ] Funcionalidade implementada conforme especificado
+        - [ ] Dados apresentados de forma clara e organizados
+        - [ ] Filtros funcionam corretamente
+        - [ ] Permissões de acesso respeitadas
+        - [ ] Formato de saída conforme solicitado
+        - [ ] Performance adequada mesmo com muitos dados
+        - [ ] Privacidade dos estudantes protegida
+        - [ ] Funciona em diferentes dispositivos
+        
+        ## Dicas Técnicas para Implementação
+        
+        - Implementar novos endpoints REST para exportação/relatórios
+        - Considerar paginação para grandes volumes de dados
+        - Usar DTOs específicos para diferentes formatos de saída
+        - Implementar validações de permissão nos casos de uso
+        - Considerar cache para consultas frequentes
+        - Implementar filtros dinâmicos no repositório
+        - Para exportação, considerar bibliotecas como OpenCSV ou iText
+        - Manter logs de acesso a dados sensíveis para auditoria

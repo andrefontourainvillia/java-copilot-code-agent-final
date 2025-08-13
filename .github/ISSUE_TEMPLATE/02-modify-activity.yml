@@ -1,0 +1,169 @@
+name: "✏️ Modificar Atividade Existente"
+description: "Solicitar mudanças em uma atividade extracurricular existente"
+title: "[Modificar Atividade]: "
+labels: ["enhancement", "activity", "modification", "teacher-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Solicitação de Modificação de Atividade
+        
+        Use este formulário para solicitar mudanças em uma atividade extracurricular já existente.
+        Seja específico sobre quais aspectos devem ser alterados e forneça os novos valores desejados.
+
+  - type: input
+    id: current_activity_name
+    attributes:
+      label: "Nome da Atividade Atual"
+      description: "Nome exato da atividade que deve ser modificada"
+      placeholder: "Digite o nome atual da atividade"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: changes_requested
+    attributes:
+      label: "Que aspectos devem ser modificados?"
+      description: "Selecione todos os itens que devem ser alterados"
+      options:
+        - label: "Nome da atividade"
+        - label: "Descrição"
+        - label: "Tipo/Categoria"
+        - label: "Capacidade máxima"
+        - label: "Horários (dias e/ou horários)"
+        - label: "Nível de dificuldade"
+        - label: "Professor responsável"
+        - label: "Requisitos especiais"
+
+  - type: input
+    id: new_activity_name
+    attributes:
+      label: "Novo Nome da Atividade"
+      description: "Deixe em branco se não deve ser alterado"
+      placeholder: "Digite o novo nome (opcional)"
+
+  - type: textarea
+    id: new_description
+    attributes:
+      label: "Nova Descrição"
+      description: "Deixe em branco se não deve ser alterada"
+      placeholder: "Digite a nova descrição (opcional)"
+
+  - type: dropdown
+    id: new_activity_type
+    attributes:
+      label: "Novo Tipo de Atividade"
+      description: "Selecione apenas se deve ser alterado"
+      options:
+        - "Não alterar"
+        - "Esportes"
+        - "Artes"
+        - "Acadêmico"
+        - "Tecnologia"
+        - "Música"
+        - "Teatro"
+        - "Voluntariado"
+        - "Outro"
+
+  - type: input
+    id: new_max_participants
+    attributes:
+      label: "Nova Capacidade Máxima"
+      description: "Deixe em branco se não deve ser alterada"
+      placeholder: "Ex: 25"
+
+  - type: checkboxes
+    id: new_schedule_days
+    attributes:
+      label: "Novos Dias da Semana"
+      description: "Selecione apenas se os dias devem ser alterados"
+      options:
+        - label: "Segunda-feira"
+        - label: "Terça-feira"
+        - label: "Quarta-feira"
+        - label: "Quinta-feira"
+        - label: "Sexta-feira"
+        - label: "Sábado"
+        - label: "Domingo"
+
+  - type: input
+    id: new_start_time
+    attributes:
+      label: "Novo Horário de Início"
+      description: "Deixe em branco se não deve ser alterado (formato 24h)"
+      placeholder: "Ex: 16:00"
+
+  - type: input
+    id: new_end_time
+    attributes:
+      label: "Novo Horário de Término"
+      description: "Deixe em branco se não deve ser alterado (formato 24h)"
+      placeholder: "Ex: 18:00"
+
+  - type: dropdown
+    id: new_difficulty_level
+    attributes:
+      label: "Novo Nível de Dificuldade"
+      description: "Selecione apenas se deve ser alterado"
+      options:
+        - "Não alterar"
+        - "Não especificado (todos os níveis)"
+        - "Iniciante"
+        - "Intermediário"
+        - "Avançado"
+
+  - type: input
+    id: new_responsible_teacher
+    attributes:
+      label: "Novo Professor Responsável"
+      description: "Deixe em branco se não deve ser alterado"
+      placeholder: "Ex: professor.santos"
+
+  - type: textarea
+    id: new_special_requirements
+    attributes:
+      label: "Novos Requisitos Especiais"
+      description: "Deixe em branco se não devem ser alterados"
+      placeholder: "Digite os novos requisitos especiais (opcional)"
+
+  - type: textarea
+    id: reason_for_change
+    attributes:
+      label: "Motivo da Mudança"
+      description: "Explique por que esta mudança é necessária"
+      placeholder: "Ex: Aumento na demanda, conflito de horários, mudança de professor, etc."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: impact_considerations
+    attributes:
+      label: "Considerações de Impacto"
+      description: "Marque se aplicável"
+      options:
+        - label: "Esta mudança pode afetar estudantes já inscritos"
+        - label: "Notificar estudantes sobre as mudanças"
+        - label: "Verificar disponibilidade de sala/recursos"
+        - label: "Mudança urgente (implementar o mais rápido possível)"
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Critérios de Aceitação
+        
+        - [ ] Atividade localizada corretamente no sistema
+        - [ ] Apenas os campos especificados são modificados
+        - [ ] Estudantes já inscritos são preservados (a menos que especificado)
+        - [ ] Validações funcionam com os novos valores
+        - [ ] Interface exibe as informações atualizadas
+        - [ ] Filtros continuam funcionando corretamente
+        - [ ] Nenhuma funcionalidade existente é quebrada
+        
+        ## Dicas Técnicas para Implementação
+        
+        - Localizar a atividade pelo nome atual usando `ActivityRepository.findByName()`
+        - Usar métodos setters da entidade `Activity` para atualizar campos
+        - Validar novos horários usando `ScheduleDetails`
+        - Verificar se o novo professor existe na base de dados
+        - Preservar lista de participantes (`participants`) a menos que especificado
+        - Usar transações para garantir consistência das mudanças
