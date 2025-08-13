@@ -1,0 +1,179 @@
+name: "🐛 Relatar Bug"
+description: "Relatar um problema ou comportamento inesperado no sistema"
+title: "[Bug]: "
+labels: ["bug", "teacher-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Relatório de Bug
+        
+        Use este formulário para relatar problemas, erros ou comportamentos inesperados no sistema.
+        Forneça o máximo de detalhes possível para ajudar na identificação e correção do problema.
+
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: "Descrição do Bug"
+      description: "Descreva claramente o problema que está ocorrendo"
+      placeholder: "Ex: Quando tento inscrever um aluno, recebo uma mensagem de erro"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: "Passos para Reproduzir"
+      description: "Liste os passos exatos para reproduzir o problema"
+      placeholder: |
+        1. Faça login como professor
+        2. Clique em uma atividade
+        3. Digite um email de estudante
+        4. Clique em "Inscrever-se"
+        5. Veja o erro aparecer
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: "Comportamento Esperado"
+      description: "Descreva o que deveria acontecer"
+      placeholder: "Ex: O estudante deveria ser inscrito com sucesso e aparecer na lista de participantes"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: "Comportamento Atual"
+      description: "Descreva o que realmente acontece"
+      placeholder: "Ex: Aparece uma mensagem de erro vermelha dizendo 'Falha na inscrição'"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected_area
+    attributes:
+      label: "Área Afetada"
+      description: "Que parte do sistema está apresentando o problema?"
+      options:
+        - "Login de professor"
+        - "Listagem de atividades"
+        - "Inscrição de estudantes"
+        - "Cancelamento de inscrições"
+        - "Filtros de atividades"
+        - "Interface geral"
+        - "Carregamento da página"
+        - "Responsividade mobile"
+        - "Não tenho certeza"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: bug_frequency
+    attributes:
+      label: "Frequência do Bug"
+      description: "Com que frequência este problema ocorre?"
+      options:
+        - "Sempre acontece"
+        - "Frequentemente (mais de 50% das vezes)"
+        - "Às vezes (cerca de 50% das vezes)"
+        - "Raramente (menos de 50% das vezes)"
+        - "Aconteceu apenas uma vez"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser_used
+    attributes:
+      label: "Navegador Utilizado"
+      description: "Em que navegador o problema ocorre?"
+      options:
+        - "Google Chrome"
+        - "Mozilla Firefox"
+        - "Microsoft Edge"
+        - "Safari"
+        - "Opera"
+        - "Outro"
+        - "Múltiplos navegadores"
+        - "Não sei"
+
+  - type: dropdown
+    id: device_type
+    attributes:
+      label: "Tipo de Dispositivo"
+      description: "Em que tipo de dispositivo o problema ocorre?"
+      options:
+        - "Desktop/Computador"
+        - "Tablet"
+        - "Smartphone"
+        - "Múltiplos dispositivos"
+
+  - type: input
+    id: teacher_username
+    attributes:
+      label: "Nome de Usuário"
+      description: "Seu nome de usuário no sistema (para ajudar na investigação)"
+      placeholder: "Ex: professor.silva"
+
+  - type: textarea
+    id: error_messages
+    attributes:
+      label: "Mensagens de Erro"
+      description: "Copie qualquer mensagem de erro que aparecer (exata, se possível)"
+      placeholder: "Ex: 'Credenciais de professor inválidas' ou código de erro específico"
+
+  - type: dropdown
+    id: bug_severity
+    attributes:
+      label: "Gravidade do Bug"
+      description: "Quão grave é este problema?"
+      options:
+        - "Crítico - impede o uso do sistema"
+        - "Alto - funcionalidade importante não funciona"
+        - "Médio - funcionalidade menor não funciona"
+        - "Baixo - problema cosmético ou menor"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "Informações Adicionais"
+      description: "Qualquer informação adicional que possa ajudar na investigação"
+      placeholder: "Ex: O problema começou ontem, acontece apenas com certas atividades, etc."
+
+  - type: checkboxes
+    id: troubleshooting_done
+    attributes:
+      label: "Já tentei:"
+      description: "Marque as soluções que já tentou"
+      options:
+        - label: "Recarregar a página (F5)"
+        - label: "Limpar cache do navegador"
+        - label: "Tentar em outro navegador"
+        - label: "Fazer logout e login novamente"
+        - label: "Tentar em outro dispositivo"
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Critérios de Aceitação
+        
+        - [ ] Bug identificado e reproduzido em ambiente de desenvolvimento
+        - [ ] Causa raiz do problema determinada
+        - [ ] Correção implementada sem quebrar funcionalidades existentes
+        - [ ] Correção testada nos mesmos cenários do bug
+        - [ ] Validação de que o comportamento agora está conforme esperado
+        - [ ] Testes automáticos adicionados se apropriado
+        
+        ## Dicas Técnicas para Investigação
+        
+        - Verificar logs do servidor Spring Boot
+        - Examinar console do navegador para erros JavaScript
+        - Validar endpoints REST com Postman ou similar
+        - Revisar validações nas camadas de domínio e aplicação
+        - Verificar tratamento de erros nos controllers
+        - Examinar mapeamento de DTOs e entidades
+        - Considerar problemas de autenticação/autorização

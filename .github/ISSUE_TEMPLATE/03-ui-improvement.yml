@@ -1,0 +1,132 @@
+name: "🎨 Melhoria na Interface"
+description: "Solicitar melhorias na interface do usuário"
+title: "[UI]: "
+labels: ["enhancement", "ui", "frontend", "teacher-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Solicitação de Melhoria na Interface
+        
+        Use este formulário para solicitar melhorias na interface do sistema de atividades.
+        Seja específico sobre qual parte da interface deve ser modificada e como deve ficar.
+
+  - type: dropdown
+    id: interface_area
+    attributes:
+      label: "Área da Interface"
+      description: "Qual parte da interface deve ser modificada?"
+      options:
+        - "Página principal (listagem de atividades)"
+        - "Cartões de atividade"
+        - "Filtros na barra lateral"
+        - "Modal de login"
+        - "Modal de inscrição"
+        - "Cabeçalho/Header"
+        - "Cores e tema geral"
+        - "Responsividade mobile"
+        - "Mensagens de feedback"
+        - "Toda a interface"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: improvement_type
+    attributes:
+      label: "Tipo de Melhoria"
+      description: "Que tipo de melhoria você está solicitando?"
+      options:
+        - "Mudança de cores/tema"
+        - "Melhoria de layout"
+        - "Adicionar novo elemento visual"
+        - "Remover elemento existente"
+        - "Melhorar usabilidade"
+        - "Corrigir problema visual"
+        - "Adicionar animações"
+        - "Melhorar acessibilidade"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: "Comportamento Atual"
+      description: "Descreva como a interface se comporta atualmente"
+      placeholder: "Ex: Os cartões de atividade estão todos azuis e é difícil distinguir os tipos"
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired_behavior
+    attributes:
+      label: "Comportamento Desejado"
+      description: "Descreva exatamente como você gostaria que a interface ficasse"
+      placeholder: "Ex: Cada tipo de atividade deveria ter uma cor diferente, e as cores deveriam ser verde limão e branco para refletir as cores da escola"
+    validations:
+      required: true
+
+  - type: textarea
+    id: specific_colors
+    attributes:
+      label: "Cores Específicas"
+      description: "Se a melhoria envolve cores, especifique as cores exatas ou códigos hexadecimais"
+      placeholder: "Ex: Verde limão (#32CD32), Branco (#FFFFFF), remover azul atual"
+
+  - type: input
+    id: elements_to_change
+    attributes:
+      label: "Elementos CSS Específicos"
+      description: "Se souber, especifique classes CSS ou elementos específicos a serem modificados"
+      placeholder: "Ex: .activity-card, .header, .activity-tag"
+
+  - type: dropdown
+    id: priority_level
+    attributes:
+      label: "Nível de Prioridade"
+      description: "Quão importante é esta melhoria?"
+      options:
+        - "Baixa - melhoria estética"
+        - "Média - melhoria de usabilidade"
+        - "Alta - problema que afeta o uso"
+        - "Crítica - problema urgente"
+
+  - type: checkboxes
+    id: responsive_considerations
+    attributes:
+      label: "Considerações de Responsividade"
+      description: "Marque se aplicável"
+      options:
+        - label: "Esta mudança deve funcionar em dispositivos móveis"
+        - label: "Esta mudança deve funcionar em tablets"
+        - label: "Esta mudança é principalmente para desktop"
+        - label: "Testar em diferentes tamanhos de tela"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Contexto Adicional"
+      description: "Qualquer informação adicional que possa ajudar na implementação"
+      placeholder: "Ex: Esta mudança é para melhorar o orgulho escolar, outros professores também solicitaram isso, etc."
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Critérios de Aceitação
+        
+        - [ ] Interface modificada conforme especificado
+        - [ ] Mudanças funcionam em diferentes navegadores
+        - [ ] Responsividade mantida (mobile, tablet, desktop)
+        - [ ] Nenhuma funcionalidade é quebrada
+        - [ ] Cores/elementos seguem as especificações
+        - [ ] Usabilidade é mantida ou melhorada
+        - [ ] Carregamento da página não é afetado negativamente
+        
+        ## Dicas Técnicas para Implementação
+        
+        - Arquivos de estilo estão em `src/main/resources/static/styles.css`
+        - JavaScript está em `src/main/resources/static/app.js`
+        - HTML principal está em `src/main/resources/static/index.html`
+        - Considerar usar variáveis CSS para cores reutilizáveis
+        - Testar com diferentes quantidades de atividades
+        - Verificar contraste de cores para acessibilidade
+        - Usar media queries para responsividade

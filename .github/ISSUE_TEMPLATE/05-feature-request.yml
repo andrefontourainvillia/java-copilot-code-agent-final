@@ -1,0 +1,162 @@
+name: "✨ Solicitação de Nova Funcionalidade"
+description: "Solicitar uma nova funcionalidade para o sistema"
+title: "[Funcionalidade]: "
+labels: ["enhancement", "feature-request", "teacher-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Solicitação de Nova Funcionalidade
+        
+        Use este formulário para solicitar novas funcionalidades que não existem atualmente no sistema.
+        Descreva claramente o que você gostaria que fosse adicionado e por que seria útil.
+
+  - type: input
+    id: feature_name
+    attributes:
+      label: "Nome da Funcionalidade"
+      description: "Dê um nome descritivo para a funcionalidade solicitada"
+      placeholder: "Ex: Filtro por Nível de Dificuldade"
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: "Descrição da Funcionalidade"
+      description: "Descreva em detalhes o que esta funcionalidade deveria fazer"
+      placeholder: "Ex: Gostaria de poder filtrar atividades por nível de dificuldade (Iniciante, Intermediário, Avançado) para ajudar os estudantes a encontrar atividades adequadas ao seu nível"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature_category
+    attributes:
+      label: "Categoria da Funcionalidade"
+      description: "A que área do sistema esta funcionalidade se relaciona?"
+      options:
+        - "Filtros e busca"
+        - "Gestão de atividades"
+        - "Gestão de estudantes"
+        - "Interface e usabilidade"
+        - "Relatórios e estatísticas"
+        - "Autenticação e segurança"
+        - "Notificações"
+        - "Exportação de dados"
+        - "Calendário e agendamento"
+        - "Outra"
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_story
+    attributes:
+      label: "História do Usuário"
+      description: "Complete: 'Como um [tipo de usuário], eu quero [funcionalidade] para que [benefício]'"
+      placeholder: "Como um professor, eu quero poder exportar uma lista de todos os estudantes inscritos para que eu possa imprimir listas de presença"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_workaround
+    attributes:
+      label: "Solução Atual (se houver)"
+      description: "Como você resolve este problema atualmente? Ou por que não é possível resolver?"
+      placeholder: "Ex: Atualmente tenho que clicar em cada atividade individualmente para ver os participantes e anotar manualmente"
+
+  - type: dropdown
+    id: feature_priority
+    attributes:
+      label: "Prioridade"
+      description: "Quão importante é esta funcionalidade para você?"
+      options:
+        - "Baixa - seria bom ter, mas não é essencial"
+        - "Média - facilitaria muito o trabalho"
+        - "Alta - é uma necessidade real"
+        - "Crítica - é essencial para o funcionamento adequado"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: feature_scope
+    attributes:
+      label: "Escopo da Funcionalidade"
+      description: "Marque todas as opções que se aplicam"
+      options:
+        - label: "Deve funcionar para professores"
+        - label: "Deve funcionar para administradores"
+        - label: "Deve ser visível para estudantes (visualização)"
+        - label: "Deve funcionar em dispositivos móveis"
+        - label: "Deve ser exportável/imprimível"
+        - label: "Deve enviar notificações"
+        - label: "Deve integrar com funcionalidades existentes"
+
+  - type: textarea
+    id: detailed_requirements
+    attributes:
+      label: "Requisitos Detalhados"
+      description: "Liste requisitos específicos ou comportamentos esperados"
+      placeholder: |
+        Ex:
+        - O filtro deve aparecer na barra lateral esquerda
+        - Deve ser possível selecionar múltiplos níveis simultaneamente
+        - Atividades sem nível especificado devem aparecer em "Todos os níveis"
+        - O filtro deve funcionar em combinação com outros filtros existentes
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "Critérios de Aceitação"
+      description: "Como você saberia que esta funcionalidade foi implementada corretamente?"
+      placeholder: |
+        Ex:
+        - Posso ver um novo filtro na barra lateral
+        - Quando seleciono 'Iniciante', apenas atividades de nível iniciante aparecem
+        - O contador de atividades é atualizado corretamente
+        - O filtro é salvo quando recarrego a página
+
+  - type: textarea
+    id: ui_suggestions
+    attributes:
+      label: "Sugestões de Interface"
+      description: "Como você imagina que esta funcionalidade deveria aparecer na tela?"
+      placeholder: "Ex: Um dropdown com checkboxes, botões de rádio, uma seção separada no menu, etc."
+
+  - type: input
+    id: related_activities
+    attributes:
+      label: "Atividades Relacionadas"
+      description: "Esta funcionalidade se relaciona com atividades específicas?"
+      placeholder: "Ex: Principalmente atividades acadêmicas e esportivas"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Contexto Adicional"
+      description: "Qualquer informação adicional que possa ajudar no desenvolvimento"
+      placeholder: "Ex: Outros professores também solicitaram isso, é uma prática comum em outras escolas, etc."
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Critérios de Aceitação Técnicos
+        
+        - [ ] Funcionalidade implementada conforme especificado
+        - [ ] Interface intuitiva e consistente com o resto do sistema
+        - [ ] Funciona em diferentes dispositivos e navegadores
+        - [ ] Performance não é negativamente afetada
+        - [ ] Integra bem com funcionalidades existentes
+        - [ ] Validações apropriadas implementadas
+        - [ ] Testes automáticos adicionados
+        - [ ] Documentação atualizada se necessário
+        
+        ## Dicas Técnicas para Implementação
+        
+        - Considerar impacto na arquitetura Clean Architecture existente
+        - Adicionar novos campos nas entidades de domínio se necessário
+        - Implementar casos de uso na camada de aplicação
+        - Criar novos endpoints REST se necessário
+        - Atualizar DTOs e mapeadores apropriadamente
+        - Considerar migrações de banco de dados Mongock
+        - Atualizar interface JavaScript/CSS conforme necessário
+        - Manter consistência com padrões de UI existentes

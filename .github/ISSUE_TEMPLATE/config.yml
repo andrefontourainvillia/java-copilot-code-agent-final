@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "📚 Documentação do Sistema"
+    url: "https://github.com/andrefontourainvillia/java-copilot-code-agent-final/blob/main/docs/README.md"
+    about: "Consulte a documentação técnica do sistema para entender melhor o funcionamento"
+  - name: "🤝 Suporte Técnico"
+    url: "https://github.com/andrefontourainvillia/java-copilot-code-agent-final/discussions"
+    about: "Para dúvidas gerais ou discussões sobre o sistema, use as Discussions"
