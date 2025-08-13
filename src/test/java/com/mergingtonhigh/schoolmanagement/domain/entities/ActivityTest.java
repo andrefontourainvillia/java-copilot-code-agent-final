@@ -118,7 +118,7 @@ class ActivityTest {
         // Act
         Activity mangaActivity = new Activity(
                 "Manga Maniacs",
-                "Explore as histórias fantásticas dos personagens mais interessantes dos Mangás japoneses (romances gráficos).",
+                "Mergulhe no universo incrível dos mangás japoneses! Descubra heróis épicos, aventuras emocionantes e mundos fantásticos que vão despertar sua imaginação e criatividade.",
                 "Terças-feiras às 19h",
                 schedule,
                 15,
@@ -126,7 +126,7 @@ class ActivityTest {
 
         // Assert
         assertEquals("Manga Maniacs", mangaActivity.getName());
-        assertEquals("Explore as histórias fantásticas dos personagens mais interessantes dos Mangás japoneses (romances gráficos).", mangaActivity.getDescription());
+        assertEquals("Mergulhe no universo incrível dos mangás japoneses! Descubra heróis épicos, aventuras emocionantes e mundos fantásticos que vão despertar sua imaginação e criatividade.", mangaActivity.getDescription());
         assertEquals(15, mangaActivity.getMaxParticipants());
         assertEquals(0, mangaActivity.getCurrentParticipantCount());
         assertTrue(mangaActivity.canAddParticipant());

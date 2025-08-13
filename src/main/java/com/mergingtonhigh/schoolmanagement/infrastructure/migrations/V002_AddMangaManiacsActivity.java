@@ -41,7 +41,7 @@ public class V002_AddMangaManiacsActivity {
         // Create the Manga Maniacs activity
         Activity mangaActivity = new Activity(
                 "Manga Maniacs",
-                "Explore as histórias fantásticas dos personagens mais interessantes dos Mangás japoneses (romances gráficos).",
+                "Mergulhe no universo incrível dos mangás japoneses! Descubra heróis épicos, aventuras emocionantes e mundos fantásticos que vão despertar sua imaginação e criatividade.",
                 "Terças-feiras às 19h",
                 new ScheduleDetails(List.of("Tuesday"), LocalTime.of(19, 0), LocalTime.of(20, 30)),
                 15,
